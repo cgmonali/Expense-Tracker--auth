@@ -84,11 +84,11 @@ const SignUp = () => {
         </div>
       </form>
    
-    <button className={classes.account}>
-      Have an account? Login
-    </button>
+   
      </section>
-    
+     <button className={classes.account}>
+      Have an account? <div onClick={()=>{history.push('/login')}} >Login</div>
+    </button>
     </>
   );
 };

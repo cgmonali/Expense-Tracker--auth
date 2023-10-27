@@ -1,5 +1,5 @@
 .auth {
-    margin: 3rem auto;
+    margin: 2rem auto;
    width: 350px;
     max-width: 25rem;
     border-radius: 6px;
@@ -21,7 +21,7 @@
   
   .control label {
     display: block;
-    color: white;
+    color: rgb(104, 156, 171);
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
@@ -92,14 +92,23 @@
 }
 
 .account{
-    padding: 9px 20px;
-    
-    margin: 12px 0;
-   background-color: white;
-    border: 1px solid rgb(195, 192, 192);
+    background-color: white;
+    border: 1px solid rgb(223, 221, 221);
+    margin: 0 auto;
+    width: 350px;
+     max-width: 25rem;
+    padding: 1rem;
+     text-align: center;
+     display: flex;
+     justify-content: center;
 }
 
 .account:hover{
     border: 1px solid rgb(168, 162, 162);
      background-color: #e1e4e5;
+     cursor: pointer;
+}
+.account div:hover{
+    color: blue;
+    text-decoration: underline;
 }

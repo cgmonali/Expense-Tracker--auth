@@ -29,8 +29,6 @@ const MainNavigation = () => {
            
           </li>
 
-
-
      <li>
              <Link to='/login'>Login</Link>
            

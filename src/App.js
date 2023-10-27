@@ -1,12 +1,11 @@
 
 import { Switch, Route, Redirect } from 'react-router-dom';
-
-import HomePage from './components/HomePage/HomePage';
-import { BrowserRouter as Router } from "react-router-dom";
+import Login from './components/Login/Login';
+import { HashRouter as Router } from "react-router-dom";
 import SignUp from './components/SignUp/SignUp';
-import AuthPage from './components/AuthPage/AuthPage';
-import SignUpSamp from './components/SignUp/SignUpSamp';
 import Layout from './components/Layout/Layout';
+import HomePage from './components/HomePage/HomePage';
+
 function App() {
 
 
@@ -14,11 +13,15 @@ function App() {
     <Router>
     <Layout>
       <Switch>
-        <Route path='/' >
+        <Route path='/' exact>
           <SignUp />
         </Route>
-        
-   
+        <Route path='/login' >
+          <Login />
+        </Route>
+        <Route path='/homepage' >
+          <HomePage />
+        </Route>
       </Switch>
     </Layout>
     </Router>
