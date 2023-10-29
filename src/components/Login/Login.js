@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
 import classes from './Login.module.css';
-
+import AuthContext from '../../store/auth-context';
 const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef= useRef();
@@ -11,7 +11,9 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); // Add state for error message
 
-  const submitHandler = (event) => {
+
+  const authCtx = useContext(AuthContext);
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -24,44 +26,43 @@ const Login = () => {
     // optional: Add validation
     let url =  'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDcyqi2t1KKsniE8q1DWoge17LEVLNT_ng';
 
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-       
-        console.log('Logged in');
-        if (res.ok) {
-           
-          return res.json();
+    try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Logged in');
+          console.log(data);
+          authCtx.login(data.idToken);
+          console.log(data.idToken);
+          history.push('/homepage')
         } else {
-          return res.json().then((data) => {
-            let errorMessage = 'Authentication failed!';
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            throw new Error(errorMessage);
-          });
+          const data = await response.json();
+          let errorMessage = 'Authentication failed!';
+         
+          throw new Error(errorMessage);
         }
-      })
-      .then((data) => {})
-      .catch((err) => {
+      } catch (err) {
         alert(err.message);
-      });
-  };
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
   return (<>
     <section className={classes.auth}>
       <h1>Login</h1>
-      <form onSubmit={submitHandler}>
+      <form form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
           <input type="email" id="email" required ref={emailInputRef} placeholder='Email' />
@@ -72,7 +73,7 @@ const Login = () => {
          
         </div>
         <div className={classes.actions}>
-          <button onClick={()=>{history.push('/homepage')}} >Login</button>
+          <button type="submit"  >Login</button>
           {isLoading && <FaSpinner className="spinner" size={35} color="#2ab6da" />}
         </div>
       </form>

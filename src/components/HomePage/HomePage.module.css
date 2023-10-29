@@ -1,0 +1,12 @@
+.homepagecontainer{
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+.completeprofile{
+    color: blue;
+    cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.profilecontainer{
+
+
+display: flex;
+justify-content: space-around;
+
+
+}
+.profileform label{
+   font-size: 17px
+  
+}
+
+.profileform{
+    margin:30px 100px;
+  
+}
+.profileform div{
+    display: flex;
+float: right;
+padding-bottom: 90px;
+border-bottom: 2px solid black;
+}
+.profileform>span {
+    display: flex;
+    float: right;
+    margin-top: 50px ;
+    margin-left: 80px;
+    
+}
+
+.profileform input{
+    width: 250px;
+    height: 25px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px 1px rgb(188, 184, 184);
+    border: 1px solid black;
+    margin: 0 20px;
+
+
+}
+
+
+.updatebutton
+{
+    border: 2px solid rgb(173, 156, 156);
+    background-color: rgb(172, 155, 143);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    box-shadow: 1px 1px 2px rgb(96, 89, 104);
+}
+
+.updatebutton:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 3px rgb(96, 89, 104);
+    background-color: rgb(148, 132, 120);
+    border: 2px solid rgb(140, 122, 122);
+}
