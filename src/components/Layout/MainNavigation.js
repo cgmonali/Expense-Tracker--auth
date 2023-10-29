@@ -1,12 +1,16 @@
 
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
 import classes from './MainNavigation.module.css';
+
+import AuthContext from '../../store/auth-context';
 
 const MainNavigation = () => {
 
-
-
+  const authCtx = useContext(AuthContext);
+  function logoutHandler(){
+    authCtx.logout();
+  }
 
 
 
@@ -30,12 +34,14 @@ const MainNavigation = () => {
           </li>
 
      <li>
-             <Link to='/login'>Login</Link>
+             <Link to='/login' >Login</Link>
            
           </li>
        
      <li>
-            <button >Logout</button>
+     <Link to="/" onClick={logoutHandler} className={classes.logoutbtn}>
+ Logout
+</Link>
           </li>
         </ul>
       </nav>

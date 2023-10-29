@@ -10,10 +10,110 @@ const urlRef=useRef();
 
 const authCtx = useContext(AuthContext);
 console.log(authCtx.token)
+
+
+function gettingDetailsHandler(){
+
+    
+    let url=`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDcyqi2t1KKsniE8q1DWoge17LEVLNT_ng`;
+        fetch(
+            url
+                  ,
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                     idToken:localStorage.getItem('token'),
+                     
+                    }),
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  
+                  }
+          
+                  
+                ).then((res) => {
+               
+                  if (res.ok) {
+                    return res.json(); 
+                  } else {
+                    return res.json().then((data) => {
+                      let errorMessage = 'Authentication failed!';
+                      if (data && data.error && data.error.message) {
+                        errorMessage = data.error.message;
+                      }
+          
+                      throw new Error(errorMessage);
+                    });
+                  }
+                })
+                .then((data) => {
+                 console.log(data.users[0].displayName)
+                 nameRef.current.value=data.users[0].displayName;
+                 urlRef.current.value=data.users[0].photoUrl;
+                
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+    
+            }
+    
+    
+            gettingDetailsHandler()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function submitDetailsHandler(){
 
 const enteredName=nameRef.current.value;
 const enteredUrl=urlRef.current.value;
+
+
+
+
+
+
+
+
 
 let url=`https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDcyqi2t1KKsniE8q1DWoge17LEVLNT_ng`;
     fetch(
@@ -59,14 +159,6 @@ let url=`https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDcy
             });
 
         }
-
-
-
-
-
-
-
-
 
 
 

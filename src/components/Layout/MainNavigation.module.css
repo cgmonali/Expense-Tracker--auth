@@ -39,7 +39,7 @@
     margin: 0 5px;
   }
   
-  .header button {
+   .logoutbtn {
     font: inherit;
     background-color: transparent;
     border: 0px solid rgb(148, 141, 141);
@@ -51,11 +51,11 @@
   }
   
   .header a:hover {
-    color: #98949b;
+    color: #7b40a7;
    ;
   }
   
-  .header button:hover {
+   .logoutbtn:hover {
     background-color: #77717c;
     color: #fdfbfe;
   }
