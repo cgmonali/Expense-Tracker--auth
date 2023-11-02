@@ -39,11 +39,11 @@
     margin: 0 5px;
   }
   
-   .logoutbtn {
+  .logoutbtn {
     font: inherit;
     background-color: transparent;
-    border: 0px solid rgb(148, 141, 141);
-    color: rgb(70, 66, 66);
+    border: 1px solid white;
+    color: white;
     font-weight: bold;
     padding: 0.5rem 1.5rem;
     border-radius: 6px;
@@ -51,11 +51,12 @@
   }
   
   .header a:hover {
-    color: #7b40a7;
-   ;
+    color: #98949b;
+   
   }
   
-   .logoutbtn:hover {
-    background-color: #77717c;
-    color: #fdfbfe;
+  
+  .logoutbtn:hover{
+ background-color: #77717c;
+    color: #f4f1f5;
   }

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
 import classes from './Login.module.css';
 import AuthContext from '../../store/auth-context';
+import VerifyEmailButton from './VerifyEmailButton';
 const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef= useRef();
@@ -74,7 +75,7 @@ const Login = () => {
         </div>
         <div className={classes.actions}>
           <button type="submit"  >Login</button>
-          {isLoading && <FaSpinner className="spinner" size={35} color="#2ab6da" />}
+          {isLoading && <FaSpinner className="spinner" size={32} color="#2ab6da" />}
         </div>
       </form>
       <button className={classes.forgotpassword}>
@@ -87,6 +88,7 @@ const Login = () => {
     <button className={classes.account}>
 Don't have an account? <div onClick={()=>{history.push('/')}} > Sign Up</div>
     </button>
+
     </>
   );
 };

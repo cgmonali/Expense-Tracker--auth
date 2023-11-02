@@ -10,3 +10,21 @@
     color: blue;
     cursor: pointer;
 }
+
+.emailVerifyBtn{
+    border: 0 solid purple;
+    margin: 0 35px;
+    padding: 15px;
+    border-radius: 5px;
+    color:white;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size:small;
+    background-color: rgb(208, 106, 208);
+
+}
+
+.emailVerifyBtn:hover{
+    background-color: rgb(166, 65, 166);
+    cursor: pointer;
+}

@@ -49,8 +49,9 @@ function gettingDetailsHandler(){
                 })
                 .then((data) => {
                  console.log(data.users[0].displayName)
+                 if(data.users[0].displayName && data.users[0].photoUrl){
                  nameRef.current.value=data.users[0].displayName;
-                 urlRef.current.value=data.users[0].photoUrl;
+                 urlRef.current.value=data.users[0].photoUrl;}
                 
                 })
                 .catch((err) => {
@@ -67,51 +68,10 @@ function gettingDetailsHandler(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function submitDetailsHandler(){
 
 const enteredName=nameRef.current.value;
 const enteredUrl=urlRef.current.value;
-
-
-
-
-
-
 
 
 
