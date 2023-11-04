@@ -32,6 +32,10 @@ const MainNavigation = () => {
              <Link to='/'>About Us</Link>
            
           </li>
+        { authCtx.isLoggedIn && <li>
+             <Link to='/dailyexpense' >Daily Expense</Link>
+           
+          </li>}
 
      <li>
              <Link to='/login' >Login</Link>

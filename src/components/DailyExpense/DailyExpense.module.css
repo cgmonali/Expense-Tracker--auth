@@ -1,0 +1,87 @@
+.inputItems{
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(85, 130, 155);
+    display: flex;
+    padding: 20px;
+   margin: 0 auto;
+    border-radius: 5px;
+  width: 60%;
+  /* border: 1px solid rgb(25, 156, 233); */
+  box-shadow: 3px 3px 7px rgb(183, 186, 187);
+ 
+
+}
+.inputItems label{
+    font-weight: bold;
+    color: rgb(171, 206, 233);
+}
+
+
+
+
+
+.moneyInput{
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid rgb(111, 186, 230);
+    border-radius: 5px;
+}
+
+.descriptionInput{
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid rgb(111, 186, 230);
+    border-radius: 5px;
+}
+
+.selectInput{
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid rgb(111, 186, 230);
+    border-radius: 5px;
+}
+
+.submitInput{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid rgb(23, 179, 227);
+    border-radius: 5px;
+    width: 85px;
+    background-color: rgb(9, 167, 246);
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    
+}
+
+.submitInput:hover{
+    cursor: pointer;
+    background-color: rgb(12, 138, 201);
+}
+
+.listingItems{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    background-color: rgb(150, 199, 225);
+   font-size: large;
+   color: rgb(10, 73, 85);
+   font-weight: bolder;
+    margin: 20px auto;
+   width: 50%;
+   box-shadow: 2px 2px 4px rgb(183, 186, 187);
+}
+
+.listingItems span {
+    margin: 10px;
+    padding: 0 50px;
+    
+}
+.listingcontainer h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(22, 136, 170);
+}

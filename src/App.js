@@ -6,6 +6,7 @@ import SignUp from './components/SignUp/SignUp';
 import Layout from './components/Layout/Layout';
 import HomePage from './components/HomePage/HomePage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import DailyExpense from './components/DailyExpense/DailyExpense';
 function App() {
 
 
@@ -25,6 +26,9 @@ function App() {
 
         <Route path='/profilepage' >
           <ProfilePage />
+        </Route>
+        <Route path='/dailyexpense' >
+          <DailyExpense />
         </Route>
 
 
