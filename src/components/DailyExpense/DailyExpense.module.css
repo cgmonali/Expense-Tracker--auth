@@ -70,7 +70,7 @@
    color: rgb(10, 73, 85);
    font-weight: bolder;
     margin: 20px auto;
-   width: 50%;
+   width: 60%;
    box-shadow: 2px 2px 4px rgb(183, 186, 187);
 }
 
@@ -84,4 +84,34 @@
     align-items: center;
     justify-content: center;
     color: rgb(22, 136, 170);
+}
+
+.deleteBtn{
+    background-color: rgb(234, 99, 99);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 10px;
+    border-radius: 5px;
+    float: right;
+    color: bisque;
+}
+
+.deleteBtn:hover{
+cursor: pointer;
+background-color: rgb(219, 39, 39);
+
+}
+
+.editBtn{
+    background-color: rgb(166, 173, 176);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 15px;
+    border-radius: 5px;
+    float: right;
+    margin: 0 5px;
+    color: aliceblue;
+}
+
+.editBtn:hover{
+    cursor: pointer;
+    background-color: grey;
 }

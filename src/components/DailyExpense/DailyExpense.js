@@ -8,6 +8,8 @@ const DailyExpense = () => {
 
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditing,setIsediting]=useState(false);
+  const [editingExpense, setEditingExpense] = useState(null);
 
   useEffect(() => {
     // Fetch expenses from the backend and update the expenses state
@@ -33,8 +35,52 @@ const DailyExpense = () => {
     setIsLoading(false);
   }
 
+
+
+
+
+
+
+
+
   async function dailyExpenseHandler(event) {
     event.preventDefault();
+   
+
+
+    if (editingExpense) {
+        const updatedExpense = {
+          money: moneyRef.current.value,
+          description: descriptionRef.current.value,
+          category: categoryRef.current.value,
+        };
+  
+        const response = await fetch(
+          `https://expense-tracker-item-default-rtdb.firebaseio.com/addexpenses/${editingExpense.id}.json`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedExpense),
+          }
+        );
+  
+        if (response.ok) {
+          fetchExpenses();
+          setEditingExpense(null);
+          moneyRef.current.value = '';
+          descriptionRef.current.value = '';
+          categoryRef.current.value = '';
+        }
+    }
+
+
+
+
+
+
+else{
     const money = moneyRef.current.value;
     const description = descriptionRef.current.value;
     const category = categoryRef.current.value;
@@ -57,6 +103,7 @@ const DailyExpense = () => {
     moneyRef.current.value = '';
     descriptionRef.current.value = '';
     categoryRef.current.value = '';
+}
   }
 
   async function saveExpenseToBackend(expense) {
@@ -68,6 +115,46 @@ const DailyExpense = () => {
       body: JSON.stringify(expense),
     });
   }
+
+
+  async function deleteExpense(expenseId) {
+    const response = await fetch(
+      `https://expense-tracker-item-default-rtdb.firebaseio.com/addexpenses/${expenseId}.json`,
+      {
+        method: 'DELETE',
+      }
+    );
+
+    if (response.ok) {
+      console.log('Expense successfully deleted');
+      fetchExpenses();
+    }
+  }
+
+  async function editExpense(expense) {
+    setIsediting(true);
+    setEditingExpense(expense);
+    moneyRef.current.value = expense.money;
+    descriptionRef.current.value = expense.description;
+    categoryRef.current.value = expense.category;
+
+    
+    
+    
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -91,7 +178,7 @@ const DailyExpense = () => {
   <option value="Salary">Salary</option>
 </select>
           </div>
-          <button className={classes.submitInput}  type="submit">Submit</button>
+          <button className={classes.submitInput}  type="submit">{ editingExpense? "save changes":  "Submit"}</button>
         </form>
       </section>
 
@@ -106,6 +193,9 @@ const DailyExpense = () => {
                 <span> {expense.money}</span>
                 <span>{expense.description}</span>
                 <span> {expense.category}</span>
+                <div>
+                <button onClick={() => deleteExpense(expense.id)}  className={classes.deleteBtn} >Delete</button>
+  <button onClick={() => editExpense(expense)} className={classes.editBtn} >Edit</button></div>
               </li>
             ))}
           </ul>
