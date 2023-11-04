@@ -4,24 +4,87 @@ import { FaSpinner } from 'react-icons/fa';
 import classes from './Login.module.css';
 import AuthContext from '../../store/auth-context';
 import VerifyEmailButton from './VerifyEmailButton';
+
+
 const Login = () => {
+    
   const emailInputRef = useRef();
   const passwordInputRef= useRef();
   const history =useHistory();
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); // Add state for error message
-
-
+  
+ const [displayPaswordRmark,setDisplayPaswordRmark]=useState(false);
   const authCtx = useContext(AuthContext);
+
+  
+
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+    emailInputRef.current.value="";
+   
+
+  };
+
+
+
+
+async function forgotPasswordHandler () {
+
+ const enteredEmail = emailInputRef.current.value;
+
+ setIsLoading(true);
+
+    try {
+        const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDcyqi2t1KKsniE8q1DWoge17LEVLNT_ng', {
+          method: 'POST',
+          body: JSON.stringify({
+            requestType:'PASSWORD_RESET',
+            email: enteredEmail,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (response.ok) {
+            setIsLoading(false);
+          const data = await response.json();
+          console.log('password change');
+          console.log(data);
+          setDisplayPaswordRmark(true)
+         
+         
+        } else {
+          const data = await response.json();
+          let errorMessage = 'Authentication failed!';
+         
+          throw new Error(errorMessage);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+
+  
+
+}
+
+
+
+
+
+
+
+
   const submitHandler = async (event) => {
     event.preventDefault();
-
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
     
+    
+    const enteredEmail = emailInputRef.current.value;
+     const enteredPassword = passwordInputRef.current.value;
 
-
+    
     setIsLoading(true);
 
     // optional: Add validation
@@ -46,7 +109,7 @@ const Login = () => {
           console.log(data);
           authCtx.login(data.idToken);
           console.log(data.idToken);
-          history.push('/homepage')
+          history.push('/homepage');
         } else {
           const data = await response.json();
           let errorMessage = 'Authentication failed!';
@@ -62,31 +125,31 @@ const Login = () => {
 
   return (<>
     <section className={classes.auth}>
-      <h1>Login</h1>
-      <form form onSubmit={submitHandler}>
+      <h1>{isLogin ? 'Login' :  'Forgot Password'}</h1>
+      <form form onSubmit={isLogin ? submitHandler : forgotPasswordHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
           <input type="email" id="email" required ref={emailInputRef} placeholder='Email' />
         </div>
-        <div className={classes.control}>
+     { isLogin && <div className={classes.control}>
           <label htmlFor="password">Your Password</label>
           <input type="password" id="password" required ref={passwordInputRef} placeholder='password' />
          
-        </div>
+        </div>}
         <div className={classes.actions}>
-          <button type="submit"  >Login</button>
+          <button type="submit" onClick={isLogin ? submitHandler : forgotPasswordHandler} >{isLogin ? 'Login' : 'Change Password'}</button>
           {isLoading && <FaSpinner className="spinner" size={32} color="#2ab6da" />}
         </div>
       </form>
-      <button className={classes.forgotpassword}>
-      Forgot password?
+      <button className={classes.forgotpassword} onClick={switchAuthModeHandler}>
+      {isLogin ? 'Forgot Password?':'Back to Login' }
     </button>
 
 
     
      </section>
     <button className={classes.account}>
-Don't have an account? <div onClick={()=>{history.push('/')}} > Sign Up</div>
+Don't have an account? <div onClick={()=>{ history.push('/')}} > Sign Up</div>
     </button>
 
     </>
