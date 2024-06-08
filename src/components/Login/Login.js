@@ -4,6 +4,9 @@ import { FaSpinner } from 'react-icons/fa';
 import classes from './Login.module.css';
 import AuthContext from '../../store/auth-context';
 import VerifyEmailButton from './VerifyEmailButton';
+import authSlice from '../../store/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../store/authSlice';
 
 
 const Login = () => {
@@ -18,8 +21,12 @@ const Login = () => {
  const [displayPaswordRmark,setDisplayPaswordRmark]=useState(false);
   const authCtx = useContext(AuthContext);
 
-  
+  const count = useSelector((state) => state.auth); // Access state from the store
 
+  console.log(count);
+  const dispatch = useDispatch(); 
+
+  console.log(count);
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
     emailInputRef.current.value="";
@@ -106,10 +113,18 @@ async function forgotPasswordHandler () {
         if (response.ok) {
           const data = await response.json();
           console.log('Logged in');
+          const user1 = {
+            token: data.idToken,
+            userId: data.localId,
+          };
+       
+          history.push('/homepage');
+          dispatch(login(user1));
+          console.log(user1);
+
           console.log(data);
           authCtx.login(data.idToken);
           console.log(data.idToken);
-          history.push('/homepage');
         } else {
           const data = await response.json();
           let errorMessage = 'Authentication failed!';

@@ -13,6 +13,33 @@
  
 
 }
+
+
+
+.inputItemsPremium{
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(212, 216, 219);
+    display: flex;
+    padding: 20px;
+   margin: 0 auto;
+    border-radius: 5px;
+  width: 60%;
+  /* border: 1px solid rgb(25, 156, 233); */
+  box-shadow: 3px 3px 7px rgb(183, 186, 187);
+ 
+
+}
+
+.dailyExpenseContainerPremium{
+    background-color:  #393939;
+    padding: 60px 0;
+}
+.dailyExpenseContainer{
+    padding: 60px 0;
+}
+
 .inputItems label{
     font-weight: bold;
     color: rgb(171, 206, 233);
@@ -61,6 +88,7 @@
 }
 
 .listingItems{
+    padding: 14px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,6 +101,26 @@
    width: 60%;
    box-shadow: 2px 2px 4px rgb(183, 186, 187);
 }
+
+.listingItemsPremium{
+    padding: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    background-color:  rgb(212, 216, 219);;
+   font-size: large;
+   color: rgb(10, 73, 85);
+   font-weight: bolder;
+    margin: 20px auto;
+   width: 60%;
+   box-shadow: 2px 2px 4px rgb(183, 186, 187);
+
+}
+
+
+
+
 
 .listingItems span {
     margin: 10px;
@@ -114,4 +162,59 @@ background-color: rgb(219, 39, 39);
 .editBtn:hover{
     cursor: pointer;
     background-color: grey;
+}
+
+
+
+.downloadBtn{
+    justify-items: center;
+    background-color: rgb(114, 133, 142);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: aliceblue;
+    width: 151px;
+    margin: 0 47%;
+
+}
+
+.premiumActiveBtn{
+    justify-items: center;
+    background-color: rgb(114, 133, 142);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: aliceblue;
+
+}
+
+.premiumDeactiveBtn{
+
+    justify-items: center;
+    background-color: rgb(219, 228, 232);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: rgb(74, 83, 90);
+}
+
+.darkThemeBtn{
+    background-color: rgb(184, 194, 197);
+    border:1px solid rgb(231, 233, 234);
+    padding:5px 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: rgb(33, 37, 40);
+}
+
+.lightThemeBtn{
+    background-color: rgb(36, 51, 57);
+    border:1px solid rgb(235, 244, 249);
+    padding:5px 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: rgb(178, 192, 203);
 }
